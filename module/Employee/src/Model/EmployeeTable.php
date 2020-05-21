@@ -70,4 +70,9 @@ class EmployeeTable
     {
         $this->tableGateway->delete(['id' => (int) $id]);
     }
+    public function getSalaryList($id)
+    {
+        $stmt = $adapter->query('SELECT * FROM salary'); 
+        $rows = $stmt->fetchAll();
+    }
 }

@@ -145,6 +145,7 @@ class EmployeeController extends AbstractActionController
         return [
             'id' => $id,
             'employee' => $this->table->getEmployee($id),
+            'salaries' => $this->table->getSalaryList($id),
         ];
     }
 }

@@ -15,7 +15,7 @@
         "laminas/laminas-development-mode": "^3.2",
         "laminas/laminas-mvc": "^3.1.1",
         "laminas/laminas-cache": "^2.9.0",
-        "laminas/laminas-db": "^2.10.0",
+        "laminas/laminas-db": "^2.11",
         "laminas/laminas-mvc-form": "^1.0",
         "laminas/laminas-json": "^3.1.2",
         "laminas/laminas-log": "^2.12",
