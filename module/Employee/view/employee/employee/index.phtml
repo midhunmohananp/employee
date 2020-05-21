@@ -1,0 +1,26 @@
+<?php
+$title = 'Employees';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p>
+    <a href="<?= $this->url('employee', ['action' => 'add']) ?>">Add new employee</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Name</th>
+    <th>Designation</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($employees as $employee) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($employee->name) ?></td>
+        <td><?= $this->escapeHtml($employee->designation) ?></td>
+        <td>
+            <a href="<?= $this->url('employee', ['action' => 'edit', 'id' => $employee->id]) ?>">Edit</a>
+            <a href="<?= $this->url('employee', ['action' => 'delete', 'id' => $employee->id]) ?>">Delete</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>

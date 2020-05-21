@@ -1,0 +1,52 @@
+<?php
+
+$title = 'Edit employee';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+$name = $form->get('name');
+$name->setAttribute('class', 'form-control');
+$name->setAttribute('placeholder', 'Employee name');
+
+$designation = $form->get('designation');
+$designation->setAttribute('class', 'form-control');
+$designation->setAttribute('placeholder', 'Designation');
+
+$hireDate = $form->get('hire_date');
+$hireDate->setAttribute('class', 'form-control');
+$hireDate->setAttribute('placeholder', 'Hire date');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('employee', [
+    'action' => 'edit',
+    'id'     => $id,
+]));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+<div class="form-group">
+    <?= $this->formLabel($name) ?>
+    <?= $this->formElement($name) ?>
+    <?= $this->formElementErrors()->render($name, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($designation) ?>
+    <?= $this->formElement($designation) ?>
+    <?= $this->formElementErrors()->render($designation, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($hireDate) ?>
+    <?= $this->formElement($hireDate) ?>
+    <?= $this->formElementErrors()->render($hireDate, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();
