@@ -39,4 +39,12 @@ return [
             'employee' => __DIR__ . '/../view',
         ],
     ],
+    'service_manager' => [
+        'aliases' => [
+            Model\SalaryRepositoryInterface::class => Model\SalaryRepository::class,
+        ],
+        'factories' => [
+            Model\SalaryRepository::class => InvokableFactory::class,
+        ],
+    ],
 ];

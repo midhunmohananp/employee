@@ -13,6 +13,7 @@ namespace Employee;
 use Laminas\Db\ResultSet\ResultSet;
 use Laminas\Db\Adapter\AdapterInterface;
 use Laminas\Db\TableGateway\TableGateway;
+use Employee\Model\SalaryRepositoryInterface;
 use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 
 class Module implements ConfigProviderInterface
@@ -44,7 +45,7 @@ class Module implements ConfigProviderInterface
             'factories' => [
                 Controller\EmployeeController::class => function($container) {
                     return new Controller\EmployeeController(
-                        $container->get(Model\EmployeeTable::class)
+                        $container->get(Model\EmployeeTable::class),$container->get(SalaryRepositoryInterface::class)
                     );
                 },
             ],

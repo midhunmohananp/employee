@@ -10,21 +10,24 @@ declare (strict_types = 1);
 
 namespace Employee\Controller;
 
-use Employee\Form\EmployeeForm;
 use Employee\Model\Employee;
+use Employee\Form\EmployeeForm;
 use Employee\Model\EmployeeTable;
-use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
+use Employee\Model\SalaryRepositoryInterface;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class EmployeeController extends AbstractActionController
 {
     // Add this property:
     private $table;
+    private $salaryRepository;
 
     // Add this constructor:
-    public function __construct(EmployeeTable $table)
+    public function __construct(EmployeeTable $table,SalaryRepositoryInterface $salaryRepository)
     {
         $this->table = $table;
+        $this->salaryRepository = $salaryRepository;
     }
 
     public function indexAction()
@@ -145,7 +148,7 @@ class EmployeeController extends AbstractActionController
         return [
             'id' => $id,
             'employee' => $this->table->getEmployee($id),
-            'salaries' => $this->table->getSalaryList($id),
+            'salaries' => $this->salaryRepository->findAllSalaries($id),
         ];
     }
 }

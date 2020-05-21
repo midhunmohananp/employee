@@ -15,4 +15,10 @@ $this->headTitle($title);
     <th>Month&Year</th>
     <th>Salary</th>
 </tr>
+<?php foreach ($salaries as $salary): ?>
+    <tr>
+        <td><?=$this->escapeHtml($salary->getSalary())?></td>
+        <td><?=$this->escapeHtml($salary->getPaidDate())?></td>
+    </tr>
+<?php endforeach;?>
 </table>
