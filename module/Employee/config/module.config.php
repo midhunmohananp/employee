@@ -44,7 +44,7 @@ return [
             Model\SalaryRepositoryInterface::class => Model\SalaryRepository::class,
         ],
         'factories' => [
-            Model\SalaryRepository::class => InvokableFactory::class,
+            Model\SalaryRepository::class => Factory\SalaryRepositoryFactory::class,
         ],
     ],
 ];

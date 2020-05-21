@@ -17,8 +17,9 @@ $this->headTitle($title);
 </tr>
 <?php foreach ($salaries as $salary): ?>
     <tr>
-        <td><?=$this->escapeHtml($salary->getSalary())?></td>
         <td><?=$this->escapeHtml($salary->getPaidDate())?></td>
+        <td><?=$this->escapeHtml($salary->getSalary())?></td>
+
     </tr>
 <?php endforeach;?>
 </table>
