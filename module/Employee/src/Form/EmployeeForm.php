@@ -36,6 +36,13 @@ class EmployeeForm extends Form
             ],
         ]);
         $this->add([
+            'name' => 'salary',
+            'type' => 'number',
+            'options' => [
+                'label' => 'Monthly salary',
+            ],
+        ]);
+        $this->add([
             'name' => 'submit',
             'type' => 'submit',
             'attributes' => [

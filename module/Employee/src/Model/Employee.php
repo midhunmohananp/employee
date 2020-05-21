@@ -22,6 +22,7 @@ class Employee implements InputFilterAwareInterface
     public $name;
     public $designation;
     public $hire_date;
+    public $salary;
     private $inputFilter;
 
     public function exchangeArray(array $data)
@@ -30,6 +31,7 @@ class Employee implements InputFilterAwareInterface
         $this->name = !empty($data['name']) ? $data['name'] : null;
         $this->designation = !empty($data['designation']) ? $data['designation'] : null;
         $this->hire_date = !empty($data['hire_date']) ? $data['hire_date'] : null;
+        $this->salary = !empty($data['salary']) ? $data['salary'] : null;
     }
     public function setInputFilter(InputFilterInterface $inputFilter)
     {
@@ -93,6 +95,10 @@ class Employee implements InputFilterAwareInterface
             ],
         ]);
         $inputFilter->add([
+            'name' => 'salary',
+            'required' => true,
+        ]);
+        $inputFilter->add([
             'name' => 'hire_date',
             'required' => true,
         ]);
@@ -107,6 +113,7 @@ class Employee implements InputFilterAwareInterface
             'name' => $this->name,
             'designation'  => $this->designation,
             'hire_date'  => $this->hire_date,
+            'salary'  => $this->salary,
         ];
     }
 }

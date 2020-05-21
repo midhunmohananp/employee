@@ -45,6 +45,7 @@ class EmployeeTable
             'name' => $employee->name,
             'designation'  => $employee->designation,
             'hire_date'  => $employee->hire_date,
+            'salary'  => $employee->salary,
         ];
 
         $id = (int) $employee->id;

@@ -6,15 +6,15 @@
  * @license   https://github.com/laminas/laminas-mvc-skeleton/blob/master/LICENSE.md New BSD License
  */
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace Employee\Controller;
 
-use Employee\Model\Employee;
 use Employee\Form\EmployeeForm;
+use Employee\Model\Employee;
 use Employee\Model\EmployeeTable;
-use Laminas\View\Model\ViewModel;
 use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
 
 class EmployeeController extends AbstractActionController
 {
@@ -29,7 +29,7 @@ class EmployeeController extends AbstractActionController
 
     public function indexAction()
     {
-       return new ViewModel([
+        return new ViewModel([
             'employees' => $this->table->fetchAll(),
         ]);
     }
@@ -42,7 +42,7 @@ class EmployeeController extends AbstractActionController
 
         $request = $this->getRequest();
 
-        if (! $request->isPost()) {
+        if (!$request->isPost()) {
             return ['form' => $form];
         }
 
@@ -50,7 +50,7 @@ class EmployeeController extends AbstractActionController
         $form->setInputFilter($employee->getInputFilter());
         $form->setData($request->getPost());
 
-        if (! $form->isValid()) {
+        if (!$form->isValid()) {
             return ['form' => $form];
         }
         $employee->exchangeArray($form->getData());
@@ -81,16 +81,16 @@ class EmployeeController extends AbstractActionController
         $form->get('submit')->setAttribute('value', 'Edit');
 
         $request = $this->getRequest();
-        $viewData = ['id' => $id, 'form' => $form];
+        $viewData = ['id' => $id, 'form' => $form, 'employee' => $this->table->getEmployee($id)];
 
-        if (! $request->isPost()) {
+        if (!$request->isPost()) {
             return $viewData;
         }
 
         $form->setInputFilter($employee->getInputFilter());
         $form->setData($request->getPost());
 
-        if (! $form->isValid()) {
+        if (!$form->isValid()) {
             return $viewData;
         }
 
@@ -98,7 +98,7 @@ class EmployeeController extends AbstractActionController
 
         // Redirect to employee list
         return $this->redirect()->toRoute('employee', ['action' => 'index']);
- 
+
     }
 
     public function deleteAction()
@@ -122,7 +122,28 @@ class EmployeeController extends AbstractActionController
         }
 
         return [
-            'id'    => $id,
+            'id' => $id,
+            'employee' => $this->table->getEmployee($id),
+        ];
+    }
+    public function salaryAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
+
+        if (0 === $id) {
+            return $this->redirect()->toRoute('employee', ['action' => 'add']);
+        }
+
+        // Retrieve the employee with the specified id. Doing so raises
+        // an exception if the employee is not found, which should result
+        // in redirecting to the landing page.
+        try {
+            $employee = $this->table->getEmployee($id);
+        } catch (\Exception $e) {
+            return $this->redirect()->toRoute('employee', ['action' => 'index']);
+        }
+        return [
+            'id' => $id,
             'employee' => $this->table->getEmployee($id),
         ];
     }

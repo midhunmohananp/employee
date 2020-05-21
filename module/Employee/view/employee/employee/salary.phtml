@@ -1,0 +1,18 @@
+<?php
+$title = 'Salary List';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"><?= $this->escapeHtml($employee->name) ?></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><?= $this->escapeHtml($employee->designation) ?></h6>
+  </div>
+</div>
+<br>
+<table class="table">
+<tr>
+    <th>Month&Year</th>
+    <th>Salary</th>
+</tr>
+</table>

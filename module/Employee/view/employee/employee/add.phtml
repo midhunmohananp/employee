@@ -16,11 +16,16 @@ $designation->setAttribute('placeholder', 'Designation');
 
 $hireDate = $form->get('hire_date');
 $hireDate->setAttribute('class', 'form-control');
-$hireDate->setAttribute('placeholder', 'Designation');
+$hireDate->setAttribute('placeholder', 'hire date');
+
+$salary = $form->get('salary');
+$salary->setAttribute('class', 'form-control');
+$salary->setAttribute('placeholder', 'salary');
 
 // This provides CSS classes for the submit button:
 $submit = $form->get('submit');
-$submit->setAttribute('class', 'btn btn-primary');
+$submit->setAttribute('class', 'btn btn-success');
+$submit->setAttribute('value', 'Create');
 
 $form->setAttribute('action', $this->url('employee', ['action' => 'add']));
 $form->prepare();
@@ -45,6 +50,11 @@ echo $this->form()->openTag($form);
     <?=$this->formLabel($hireDate)?>
     <?=$this->formElement($hireDate)?>
     <?=$this->formElementErrors()->render($hireDate, ['class' => 'help-block'])?>
+</div>
+<div class="form-group">
+    <?=$this->formLabel($salary)?>
+    <?=$this->formElement($salary)?>
+    <?=$this->formElementErrors()->render($salary, ['class' => 'help-block'])?>
 </div>
 
 <?php

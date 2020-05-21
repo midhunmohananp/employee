@@ -3,7 +3,7 @@
 $title = 'Edit employee';
 $this->headTitle($title);
 ?>
-<h1><?= $this->escapeHtml($title) ?></h1>
+<h1><?=$this->escapeHtml($title)?></h1>
 <?php
 $name = $form->get('name');
 $name->setAttribute('class', 'form-control');
@@ -13,37 +13,53 @@ $designation = $form->get('designation');
 $designation->setAttribute('class', 'form-control');
 $designation->setAttribute('placeholder', 'Designation');
 
+$salary = $form->get('salary');
+$salary->setAttribute('class', 'form-control');
+$salary->setAttribute('placeholder', 'Monthly salary');
+
 $hireDate = $form->get('hire_date');
 $hireDate->setAttribute('class', 'form-control');
 $hireDate->setAttribute('placeholder', 'Hire date');
 
 $submit = $form->get('submit');
 $submit->setAttribute('class', 'btn btn-primary');
+$submit->setAttribute('value', 'Update');
+?>
+<div class="form-group">
 
+<a href="<?=$this->url('employee', ['action' => 'delete', 'id' => $employee->id])?>"><button type="button" class="btn btn-danger">Delete</button></a>
+            <a href="<?=$this->url('employee', ['action' => 'salary', 'id' => $employee->id])?>"><button type="button" class="btn btn-info">Salary List</button></a>
+            </div>
+<?php
 $form->setAttribute('action', $this->url('employee', [
     'action' => 'edit',
-    'id'     => $id,
+    'id' => $id,
 ]));
 $form->prepare();
 
 echo $this->form()->openTag($form);
 ?>
 <div class="form-group">
-    <?= $this->formLabel($name) ?>
-    <?= $this->formElement($name) ?>
-    <?= $this->formElementErrors()->render($name, ['class' => 'help-block']) ?>
+    <?=$this->formLabel($name)?>
+    <?=$this->formElement($name)?>
+    <?=$this->formElementErrors()->render($name, ['class' => 'help-block'])?>
 </div>
 
 <div class="form-group">
-    <?= $this->formLabel($designation) ?>
-    <?= $this->formElement($designation) ?>
-    <?= $this->formElementErrors()->render($designation, ['class' => 'help-block']) ?>
+    <?=$this->formLabel($designation)?>
+    <?=$this->formElement($designation)?>
+    <?=$this->formElementErrors()->render($designation, ['class' => 'help-block'])?>
 </div>
 
 <div class="form-group">
-    <?= $this->formLabel($hireDate) ?>
-    <?= $this->formElement($hireDate) ?>
-    <?= $this->formElementErrors()->render($hireDate, ['class' => 'help-block']) ?>
+    <?=$this->formLabel($hireDate)?>
+    <?=$this->formElement($hireDate)?>
+    <?=$this->formElementErrors()->render($hireDate, ['class' => 'help-block'])?>
+</div>
+<div class="form-group">
+    <?=$this->formLabel($salary)?>
+    <?=$this->formElement($salary)?>
+    <?=$this->formElementErrors()->render($salary, ['class' => 'help-block'])?>
 </div>
 
 <?php
